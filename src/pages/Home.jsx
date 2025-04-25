@@ -64,33 +64,6 @@ function Home() {
 
   function handleInputChange(event) {
     setSearchQuery(event.target.value);
-    if (event.target.value.trim()) {
-      const searchForMovies = async () => {
-        setLoading(true);
-        setError(null);
-        try {
-          const results = await searchMovies(event.target.value);
-          if (results && results.length > 0) {
-            setMovies(results);
-          } else {
-            setMovies([]);
-            setError("No movies found matching your search.");
-          }
-        } catch (err) {
-          setError(
-            "Failed to fetch search results. Please check your connection."
-          );
-          setMovies([]);
-          console.error("Search fetch error:", err);
-        } finally {
-          setLoading(false);
-        }
-      };
-      searchForMovies();
-    } else {
-      setError("Please enter a movie title to search.");
-      setMovies([]);
-    }
   }
 
   return (
